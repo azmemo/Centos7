@@ -14,23 +14,22 @@
 
 setbright(){
 
-pct=$1
+# Define variables
 
-if [ $pct -gt 100 ]; then
-  echo "Value must be between 5 and 100";
-  return;
+pct=$1;
+max=$(cat /sys/class/backlight/intel_backlight/max_brightness);
+lvl=$(($pct*$max/100));
+
+# Verify parameters and adjust monitor brightness if valid, else return error
+
+if [ $pct -lt 5 ];then
+  echo "Value must be between 5 and 100";return;
+elif [ $pct -gt 100 ];then
+  echo "Value must be between 5 and 100";return;
+else
+  echo $lvl > /sys/class/backlight/intel_backlight/brightness
+  echo "Brightness set to $pct% ($lvl)"
 fi
-
-if [ $pct -lt 5 ]; then
-  echo "Value must be between 5 and 100";
-  return;
-fi
-
-max=$(cat /sys/class/backlight/intel_backlight/max_brightness)
-lvl=$(($pct*$max/100))
-
-echo $lvl > /sys/class/backlight/intel_backlight/brightness
-echo "Brightness set to $pct% ($lvl)"
 }
 
 export -f setbright
