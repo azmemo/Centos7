@@ -28,7 +28,7 @@ elif [ $pct -gt 100 ];then
   echo "Value must be between 5 and 100";return;
 else
   echo $lvl > /sys/class/backlight/intel_backlight/brightness
-  echo "Brightness set to $pct% ($lvl)"
+  echo "Screen brightness set to $pct% ($lvl)"
 fi
 }
 
