@@ -1,7 +1,7 @@
 # This file defines the funcion setbright to adjust console screen brightness to a user-defined
 # percentage while using Centos 7 in run level 3 or below on a laptop.
 #
-# This file must be placed in /etc/system.d
+# This file must be placed in /etc/profile.d
 # 
 # All users must read-write privileges /sys/class/backlight/intel_backlight/brightness
 # To ensure this configuration on system startup:
